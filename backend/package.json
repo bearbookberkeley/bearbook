@@ -1,0 +1,24 @@
+{
+  "name": "bearbook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "tsc --noEmit && eslint --ext .ts,.tsx ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bearbookberkeley/bearbook.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bearbookberkeley/bearbook/issues"
+  },
+  "homepage": "https://github.com/bearbookberkeley/bearbook#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
+    "eslint": "^8.35.0"
+  }
+}
