@@ -3,7 +3,11 @@ import * as dotenv from 'dotenv';
 import express from 'express';
 import http from 'http';
 
+import connectDB from './util/db';
+
 dotenv.config();
+
+connectDB();
 
 const PORT = Number(process.env.PORT) || 5000;
 
