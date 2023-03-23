@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "tsc --noEmit && eslint --ext .ts,.tsx ."
+    "lint": "tsc --noEmit && eslint --ext .ts,.tsx .",
+    "start": "tsc && node build/server.js"
   },
   "repository": {
     "type": "git",
