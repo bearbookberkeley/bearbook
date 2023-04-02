@@ -48,6 +48,7 @@ export default async (app: Application) => {
       next();
     }
   }, passport.authenticate('google', {
+    hd: 'berkeley.edu',
     scope: SCOPE,
     accessType: 'offline',
     prompt: 'consent',
@@ -83,6 +84,10 @@ export default async (app: Application) => {
   }, async (_, __, profile, done) => {
     // _ -> accessToken, __ -> refreshToken
     // not used! do not expose for security reasons.
+
+    if (profile._json.hd !== 'berkeley.edu') {
+      return done(null, false, { message: 'Not a Cal student' });
+    }
 
     const email = profile.emails?.[0].value;
 
