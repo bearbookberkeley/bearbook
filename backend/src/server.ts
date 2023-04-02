@@ -22,9 +22,9 @@ export default () => {
   app.use(helmet());
   passportLoader(app);
 
-  // if (!config.isDev) {
-  //   app.use(express.static(path.resolve('client/dist')));
-  // }
+  if (!config.isDev) {
+    app.use(express.static(path.resolve('client/dist')));
+  }
 
   server.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 };
