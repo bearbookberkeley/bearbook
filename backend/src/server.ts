@@ -1,21 +1,30 @@
 import * as path from 'path';
-import * as dotenv from 'dotenv';
 import express from 'express';
 import http from 'http';
+import cors from 'cors';
+import helmet from 'helmet';
 
 import connectDB from './util/db';
+import { config } from './util/config';
+import passportLoader from './util/passport';
 
-dotenv.config();
+export default () => {
+  connectDB();
 
-connectDB();
+  const PORT = config.port || 5001;
 
-const PORT = Number(process.env.PORT) || 5000;
+  const app = express();
+  const server = http.createServer(app);
 
-const app = express();
-const server = http.createServer(app);
+  app.use(cors({
+    credentials: true,
+  }));
+  app.use(helmet());
+  passportLoader(app);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.resolve('client/dist')));
-}
+  if (!config.isDev) {
+    app.use(express.static(path.resolve('client/dist')));
+  }
 
-server.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+  server.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+};
